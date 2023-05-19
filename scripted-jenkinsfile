@@ -1,6 +1,6 @@
 //Scripted Groovy
 
-node("node1"){def MHD = tool name: "maven3.8.8"
+node(""){def MHD = tool name: "maven3.8.8"
     stage("1. Git clone from repo"){
      sh "echo start of git clone"
     git branch: 'main', url: 'https://github.com/JOMACS-IT/web-app-prof.git'
