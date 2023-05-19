@@ -18,18 +18,15 @@ node(""){def MHD = tool name: "maven3.8.8"
         sh "${MHD}/bin/mvn sonar:sonar"
         sh "echo end of code scan"
     }
-
-    
     stage("4. store the artifact to nexus"){
         sh "echo start uploading artifacts to nexus"
          sh "${MHD}/bin/mvn deploy"
          sh "echo end of upload to nexus"
     }
-    
+   
     stage("5. Deploy to Tomcat"){
         sh "echo start deploy to tomcat server in UAT"
-        deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://54.166.10.4:9090/')], contextPath: null, war: 'target/*war'
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', path: '', url: 'http://3.83.230.130:9090/')], contextPath: null, war: 'target/*war'
         sh "echo end of deploy to tomcat server in UAT"
-    }
-    
+    } 
 }
